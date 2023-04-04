@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>PetZone | Registration </title>
+
+</head>
+<body>
+   <div class="box">
+    <div class="container">
+
+        <div class="top">
+            <header>Register with PetZone</header><br>
+			
+        </div>
+        <form>
+            <div class="input-field">
+                <input type="text" class="input" placeholder="First Name" id="RfName">
+                <i class='bx bx-user' ></i>
+            </div>
+            
+            <div class="input-field">
+                <input type="text" class="input" placeholder="Last Name" id="RlName">
+                <i class='bx bx-user' ></i>
+            </div>
+            
+            <div class="input-field">
+                <input type="text" class="input" placeholder="Email" id="Remail">
+                <i class='bx bx-user' ></i>
+            </div>
+
+            <div class="input-field">
+                <input type="Password" class="input" placeholder="Password" id="Rpassword">
+                <i class='bx bx-lock-alt'></i>
+            </div>
+
+            <!-- <div class="input-field">
+                <input type="submit" class="submit" value="Register with Us" id="">
+            </div> -->
+            <a onclick="signup()"><u>Sign Up</u></a>
+        </form>
+		
+		 <div class="two-col">
+            <div class="one">
+               <input type="checkbox" name="" id="check">
+               <label for="check"> I agree to the terms & conditions</label>
+            </div>
+        </div>
+		
+		<br>
+		<span>Already have an account? &nbsp; <a href="../Login/login.html"><u>Login here</u></a> </span>
+    </div>
+</div>  
+
+
+    <script type="text/javascript">
+        function signup() {
+          let fName = document.getElementById("RfName").value;
+          let lName = document.getElementById("RlName").value;
+          let email = document.getElementById("Remail").value;
+          let password = document.getElementById("Rpassword").value;
+          console.log(fName);
+
+          if (fName == "" || lName == "" || email == "" || password == "") {
+            //redirecttopages("UP");
+          } else {
+            fetch("http://localhost:8050/user/add", {
+              method: "POST",
+              body: JSON.stringify({
+                First_name: fName,
+                Last_name: lName,
+                Email: email,
+                Password: password,
+              }),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            }).then(function (response) {
+                reader = response.body.getReader();
+                return new Promise((resolve, reject) => {
+                function processStream({ done, value }) {
+                  if (done) {
+                    resolve();
+                    return;
+                  }
+                  // process the data in the value property
+                  console.log(value);
+
+                  var string = new TextDecoder().decode(value);
+                  console.log(string);
+                  var res = JSON.parse(string);
+                  console.log(res);
+                //   if (res.Email == email && res.Password == password) {
+                //     alert("Login Successfully..!");
+                //     window.location.assign("index.html");
+                //   } else {
+                //     alert("Username or Password Incorrect ..!");
+                //   }
+
+                alert("Register Successfully..!");
+
+                  // read the next chunk of data
+                  reader.read().then(processStream);
+                }
+                // start reading the stream
+                console.log(reader.read().then(processStream));
+              });
+            
+            });
+          }
+        }
+
+    </script>
+
+     <script type="text/javascript">
+      function redirecttopages(pageName) {
+        const signUpButton = document.getElementById("signUp");
+        const signInButton = document.getElementById("signIn");
+        const container = document.getElementById("container");
+        if ((psgeName = "UP")) {
+          container.classList.add("right-panel-active");
+        } else {
+          container.classList.remove("right-panel-active");
+        }
+      }
+      </script>
+
+</body>
+</html>

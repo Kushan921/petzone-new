@@ -1,0 +1,25 @@
+body{
+	margin: 0;
+	padding: 0;
+	background-color: #22283e;
+}
+
+form{
+	width: 600px;
+	margin: 100px auto 0 auto;
+	padding: 20px;
+	box-sahdow: 0 4px 8px 0 #30475e, 0 4px 8px 0 #30475e;
+}
+
+h1{
+	text-align: center;
+}
+
+.box1 {
+	width: 100px;
+	padding: 10px;
+	border: none;
+	border-radius: 15px;
+	box-sizing: border-box;
+	margin: 10px 0 15px 0;
+}

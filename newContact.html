@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript">
+    function signup() {
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let subject = document.getElementById("subject").value;
+      let message = document.getElementById("message").value;
+      console.log(name);
+
+      if (name == "" || lName == "" || email == "" || password == "") {
+        
+      } else {
+        fetch("http://localhost:8050/user/add", {
+          method: "POST",
+          body: JSON.stringify({
+            First_name: fName,
+            Last_name: lName,
+            Email: email,
+            Password: password,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        }).then(function (response) {
+            reader = response.body.getReader();
+            return new Promise((resolve, reject) => {
+            function processStream({ done, value }) {
+              if (done) {
+                resolve();
+                return;
+              }
+              
+              console.log(value);
+
+              var string = new TextDecoder().decode(value);
+              console.log(string);
+              var res = JSON.parse(string);
+              console.log(res);
+           
+
+            alert("Register Successfully..!");
+
+              // read the next chunk of data
+              reader.read().then(processStream);
+            }
+            // start reading the stream
+            console.log(reader.read().then(processStream));
+          });
+        
+        });
+      }
+    }
+
+</script>
+<body>
+    <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Name</label>
+          <input type="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter name">
+        </div><br/>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Email">
+        </div><br/>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Subject</label>
+            <input type="subject" class="form-control" id="subject" placeholder="Subject">
+          </div><br/>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Message</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+        <br/>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</body>
+</html>

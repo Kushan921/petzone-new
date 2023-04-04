@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SignUp and Login</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="form-container sign-up-container">
+        <form>
+          <h1>Create Account</h1>
+          <div class="social-container">
+            <a href="" class="social"><i class="fa fa-facebook"></i></a>
+            <a href="" class="social"><i class="fa fa-google"></i></a>
+            <a href="" class="social"><i class="fa fa-linkedin"></i></a>
+          </div>
+          <span>or use your email for registration</span>
+          <input
+            type="text"
+            placeholder="First Name"
+            id="RfName"
+            name="firstName"
+          />
+          <input
+            type="text"
+            placeholder="Last Name"
+            id="RlName"
+            name="lastName"
+          />
+          <input type="email" placeholder="Email" id="Remail" name="email" />
+          <input
+            type="password"
+            placeholder="Password"
+            id="Rpassword"
+            name="password"
+          />
+          <button onclick="signup()">SignUp</button>
+        </form>
+      </div>
+      <div class="form-container sign-in-container">
+        <form>
+          <h1>Sign In</h1>
+          <div class="social-container">
+            <a href="" class="social"><i class="fa fa-facebook"></i></a>
+            <a href="" class="social"><i class="fa fa-google"></i></a>
+            <a href="" class="social"><i class="fa fa-linkedin"></i></a>
+          </div>
+          <span>or use your account</span>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            id="Lemail"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            id="Lpassword"
+            required
+          />
+          <a href="">Forgot Your Password</a>
+
+          <a onclick="signin()">Sign In</a>
+        </form>
+      </div>
+      <script type="text/javascript">
+        function signup() {
+          let fName = document.getElementById("RfName").value;
+          let lName = document.getElementById("RlName").value;
+          let email = document.getElementById("Remail").value;
+          let password = document.getElementById("Rpassword").value;
+          console.log(fName);
+
+          if (fName == "" || lName == "" || email == "" || password == "") {
+            //redirecttopages("UP");
+          } else {
+            fetch("http://localhost:8050/user/add", {
+              method: "POST",
+              body: JSON.stringify({
+                First_name: fName,
+                Last_name: lName,
+                Email: email,
+                Password: password,
+              }),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            }).then(function (response) {
+              console.log(response);
+              const va = response.body.status;
+              console.log(va);
+              alert("Registration Successfully");
+            });
+          }
+        }
+
+        function signin() {
+          let email = document.getElementById("Lemail").value;
+          let password = document.getElementById("Lpassword").value;
+          console.log(email);
+          console.log(password);
+          if ((email == "") | (password == "")) {
+            // redirecttopages("IN");
+            alert("Enter login credentials")
+          } else {
+            fetch("http://localhost:8050/user/login", {
+              method: "POST",
+              body: JSON.stringify({ Email: email, Password: password }),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            }).then(function (response) {
+              //   console.log(response);
+              reader = response.body.getReader();
+              return new Promise((resolve, reject) => {
+                function processStream({ done, value }) {
+                  if (done) {
+                    resolve();
+                    return;
+                  }
+                  // process the data in the value property
+                  console.log(value);
+
+                  var string = new TextDecoder().decode(value);
+                  console.log(string);
+                  var res = JSON.parse(string);
+                  console.log(res);
+                  if (res.Email == email && res.Password == password) {
+                    alert("Login Successfully..!");
+                    window.location.assign("index.html");
+                  } else {
+                    alert("Username or Password Incorrect ..!");
+                  }
+
+                  // read the next chunk of data
+                  reader.read().then(processStream);
+                }
+                // start reading the stream
+                console.log(reader.read().then(processStream));
+              });
+            });
+          }
+        }
+      </script>
+      <script>
+        function auth() {
+          var email = document.getElementById("email").value;
+          var password = document.getElementById("password").value;
+          if (email == "shanuka@gmail.com" && password == "shanuka123") {
+            window.location.assign("index.html");
+            alert("Login Successful");
+          } else {
+            alert("Invalid Information");
+            return;
+          }
+        }
+      </script>
+
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1>Welcome Back!</h1>
+            <p>
+              To keep connected with us please login with your personal info
+            </p>
+            <button class="ghost" id="signIn">Sign In</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1>Hello, Friend!</h1>
+            <p>Enter your details and start journey with us</p>
+            <button class="ghost" id="signUp">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      function redirecttopages(pageName) {
+        const signUpButton = document.getElementById("signUp");
+        const signInButton = document.getElementById("signIn");
+        const container = document.getElementById("container");
+        if ((psgeName = "UP")) {
+          container.classList.add("right-panel-active");
+        } else {
+          container.classList.remove("right-panel-active");
+        }
+      }
+
+      // signUpButton.addEventListener('click', () => {
+
+      // });
+      // signInButton.addEventListener('click', () => {
+
+      // });
+    </script>
+  </body>
+</html>
