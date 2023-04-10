@@ -1,0 +1,34 @@
+Disease ID,Disease,Symptoms,Animal Type
+1,Bird Flu,"Fever, Sore_throat, Cough, Headache, Muscle_pain, Hard_breathing",Dogs
+2,Valley fever,"Dry_cough, Fever, Lack_of_appetite, Depression",Dogs
+3,Tuberculosis,"Weight_loss, Fever, Coughing ",Dogs
+4,Parvovirus,"Vomiting, Diarrhea, Fever, Lethargy, Loss_of_appetite, Dehydration",Dogs
+5,Distemper,"Sneezing, Coughing, Fever, Vomiting, Diarrhea, Seizures, Paralysis",Dogs
+6,Lyme Disease,"Lameness, Joint swelling, Fever, Fatigue, Loss_of_appetite, Depression",Dogs
+7,Newcastle,"Sneezing, Nasal_discharge, Cough, Diarrhea, Shudder, Drooping_wings, Paralysis, Swelling_of_the_tissues_around_the_eyes_and_the_neck, suddenly_death,  Reduction_in_production",Dogs
+8,Infectious Coryza,"Swollen_head_or_face, Sneezing, Cough, Eye_secretions, Nasal_discharge, Anorexia, Hard_breathing",Dogs
+9,Thrush,"Anorexia, Oral_lesions, Slow_growth, Scaly_eyes, Drooping_wings, Hard_breathing  ",Dogs
+10,Mastitis,"Abnormal_size_and_hardness_of_the udder, Fever",Dogs
+11,Tuberculosis ,"Abscess, Cough, Swollen_lymph_nodes, Increased_heart_rate.",Dogs
+12,Bloat,"Flatulence, Excess_salivation, Whining, Anorexia, Vomiting",Dogs
+13,Equine encephalomyelitis ,"Fever, Double_vision, Irregular_gait, Shudder, Oral_lesions, Walks_aimlessly.",Dogs
+14,Hemorrhagic septicemia ,"Fever, Hard_breathing, Cough, Eye_secretions, Nasal_discharge.",Dogs
+15,Brucellosis," Swelling_of_the_testicles_in_males, and occasionally the bacteria localizes in the joints causing arthritis. Fever, Shudder, Anorexia, Sweating, Lethargy,  Muscle_pain in the joints, muscles and, back, Headache.",Dogs
+16,"Canine Influenza	","Coughing, Sneezing, Fever, Lethargy, Loss of appetite, Nasal discharge",Dogs
+17,Pneumonia,"Fever, Anorexia, Hard_breathing, Eye_secretions, Nasal_discharge, Excess_salivation, Diarrhea.",Dogs
+18,Foot and mouth disease (FMD),"Fever, Skin_lesions,Damage_Skin, Hard_breathing, Excess_salivation, Oral_lesions.",Dogs
+19,Bluetongue,"Fever, Oral_lesions, Hard_breathing, Purple-coloured_tongue, Lameness",Dogs
+20,Anaplasmosis ,"Fever, Pale_around_eyes, Lethargy, Weight_loss, Reduction_in_production, Aggressive_behaviour.",Dogs
+21,Rabies,"Anorexia, Pruritus, Lameness, Tenesmus, Excess_salivation, Aggressive_behaviour.",Dogs
+22,Necrotic enteritis,"Anorexia, Lethargy, Fluffy_feathers, Eyes_closed, Diarrhea.",Dogs
+23,Ascarids,"Anorexia, Diarrhea, Slow_growth, Lethargy, Ruffled_feathers, Weight_loss, changes_in_behaviour.",Dogs
+24,Avian Pox,"Swollen_eyelids, Eyes_closed, Oral_lesions, Weight_loss, Anorexia.",Dogs
+25,Kennel Cough,"Coughing, Gagging, Retching, Fever, Nasal_discharge, Lethargy",Dogs
+26,Heartworm Disease,"Coughing, Fatigue, Weight_loss, Difficulty_breathing, Collapse",Dogs
+27,Leptospirosis,"Vomiting, Diarrhea, Fever, Abdominal_pain, Muscle_pain, Kidney_failure",Dogs
+28,Rabies,"Behavior_changes, Aggression, Fever, Seizures, Paralysis, Foaming_at_the_mouth",Dogs
+29,Canine Coronavirus,"Vomiting, Diarrhea, Fever, Loss_of_appetite, Lethargy",Dogs
+30,Canine Hepatitis,"Fever, Coughing, Abdominal_pain, Vomiting, Diarrhea, Jaundice",Dogs
+31,Oral Infections,"Recurring_bad_breath, Jaw_pain, Loose_teeth, Sores_in_the_mouth",Dogs
+32,Ear Infections,"High_temperature, Difficulty_hearing, Itching_and_irritation",Dogs
+33,Urinary Tract Problems,"Frequent_urination, Breaking_housetraining, Blood_in_the_urine, Dribbling_urine, Crying_out_while_urinating",Dogs

@@ -43,6 +43,9 @@ app.use("/user",UserRouter);
 const ContactRouter = require("./routes/contactRouts")
 app.use("/contact",ContactRouter);
 
+const DiseaseRouter = require('./routes/symptoms')
+app.use("/diagnose",DiseaseRouter);
+
 
 
 
