@@ -71,8 +71,8 @@ router.route("/add").post((req, res) => {
               to: recipientEmail,
               subject: "PetZone Online Boarding Reservation Confirmed!!!",
               html: `
-              <p>Email Subject - PetZone Online Boarding Reservation Confirmed!!!</p>
-              <p>Email Body – </p>
+              
+          
               <p>Dear Pet Owner,</p>
               <p>Thank you for choosing PetZone to board your furry friend!</p>
               <p>We are pleased to confirm your reservation for online boarding from [Check-in Date] to [Check-out Date].</p>
