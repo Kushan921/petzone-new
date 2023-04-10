@@ -61,16 +61,37 @@ router.route("/add").post((req, res) => {
         if (change.operationType === "insert") {
           const newDocument = change.fullDocument;
           const recipientEmail = newDocument.Email;
-          const date =newDocument.Starting_date;
-          const endDate= newDocument.Ending_date;
+          const date = newDocument.Starting_date;
+          const endDate = newDocument.Ending_date;
 
           if (!sentEmails[newDocument._id]) {
             sentEmails[newDocument._id] = true;
             const mailOptions = {
               from: "priyaherath22@gmail.com",
               to: recipientEmail,
-              subject: "New data created in MongoDB",
-              text: "Starting Date"+date+"end Date"+endDate,
+              subject: "PetZone Online Boarding Reservation Confirmed!!!",
+              html: `
+              <p>Email Subject - PetZone Online Boarding Reservation Confirmed!!!</p>
+              <p>Email Body – </p>
+              <p>Dear Pet Owner,</p>
+              <p>Thank you for choosing PetZone to board your furry friend!</p>
+              <p>We are pleased to confirm your reservation for online boarding from [Check-in Date] to [Check-out Date].</p>
+              <p>The following is a summary of your reservation:</p>
+              <p>Reservation Dates: [Check-in Date] to [Check-out Date]</p>
+              <p>Number of Boarding Dates: </p>
+              <p>Number of Boarding Nights:</p>
+              <br>
+              <p>We understand that leaving your pets behind while you are away can be stressful, but we want you to know that our team of trained professionals will provide the best care for your pets. We offer a variety of activities and services to ensure that your pets have a comfortable and enjoyable stay with us.</p>
+              <p>Please note that we require all pets to be up to date on their vaccinations before their stay with us. We kindly ask that you provide us with a copy of your pet's vaccination records prior to your scheduled check-in date.</p>
+              <p>If you have any questions or concerns regarding your reservation, please do not hesitate to contact us using,</p>
+              <p>Our Contact Number - +011 288 5549</p>
+              <p>Our Email Address – <a data-fr-linked="true" href="mailto:wearepetzone24@gmail.com">wearepetzone24@gmail.com</a></p>
+              <br>
+              <p>Thank you for choosing PetZone. We look forward to seeing you and your furry friend soon!</p>
+              <br>
+              <p>Best regards,</p>
+              <p>PetZone Reservation Team.</p>
+            `,
             };
 
             transporter.sendMail(mailOptions, (error, info) => {

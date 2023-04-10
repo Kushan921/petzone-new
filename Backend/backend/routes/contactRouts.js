@@ -46,6 +46,7 @@ router.route("/send").post((req,res)=>{
         to: 'priyaherath22@gmail.com',
         subject: name,
         text: message,
+        
       };
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
