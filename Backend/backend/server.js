@@ -43,6 +43,10 @@ app.use("/user",UserRouter);
 const ContactRouter = require("./routes/contactRouts")
 app.use("/contact",ContactRouter);
 
+//desease predict
+const DiseaseRouter = require('./routes/symptoms')
+app.use("/diagnose",DiseaseRouter);
+
 
 
 
