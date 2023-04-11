@@ -28,6 +28,58 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
+<script type="text/javascript">
+    function Predictor() {
+        let name = document.getElementById("name").value;
+        let age = document.getElementById("age").value;
+        let symptoms = document.getElementById("symptoms").value;
+        console.log(name);
+
+      if (name == "" || age == "" || symptoms == "" ) {
+        //redirecttopages("UP");
+        console.log("jskdjskj");
+      } else {
+        fetch("http://localhost:8050/diagnose/search", {
+          method: "POST",
+          body: JSON.stringify({
+            name : name,
+            age : age,
+            symptoms : symptoms
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        }).then(function (response) {
+            reader = response.body.getReader();
+            return new Promise((resolve, reject) => {
+            function processStream({ done, value }) {
+              if (done) {
+                resolve();
+                return;
+              }
+              
+              console.log(value);
+
+              var string = new TextDecoder().decode(value);
+              console.log(string);
+              
+
+              var res = JSON.parse(string);
+              console.log(res);
+
+              // read the next chunk of data
+              reader.read().then(processStream);
+            }
+            // start reading the stream
+            console.log(reader.read().then(processStream));
+          });
+        
+        });
+      }
+    }
+
+</script>
+
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid">
@@ -113,7 +165,7 @@
                     </div>
                 </div>
 				<div>
-				<a href="signlog.html" class="btn btn-lg btn-primary px-1 d-none d-lg-block">Sign In</a>
+				<a href="./Login/login.html" class="btn btn-lg btn-primary px-1 d-none d-lg-block">Sign In</a>
 				</div>
             </div>
         </nav>
@@ -129,136 +181,26 @@
 			</div>	
         <div class="row justify-content-center">
             <div class="col-12 col-sm-8 mb-5">
-                <div class="contact-form">
-                    <div id="success"></div>
-                    <form name="sentMessage" id="contactForm" novalidate="novalidate">
-                        		<div class="wrapper">
-									<div class="title">Pet Disease Predictor</div>
-										<div class="form">
-											<div class="bot-inbox inbox">
-												<div class="icon">
-													<i class="fas fa-user"></i>
-												</div>
-												<div class="msg-header">
-													<p>Hello, This is Petzone Disease Predictor, How can I help you ?</p>
-												</div>
-											</div>
-											<div class="user-inbox inbox">
-												<div class="msg-header">
-													<p>Hi PetZone</p>
-												</div>
-											</div>
-											<div class="bot-inbox inbox">
-												<div class="icon">
-													<i class="fas fa-user"></i>
-												</div>
-												<div class="msg-header">
-													<p>Are your pet feeling sick ? </p>
-												</div>
-											</div>
-											<div class="user-inbox inbox">
-												<div class="msg-header">
-													<p>Yes</p>
-												</div>
-											</div>
-											<div class="bot-inbox inbox">
-												<div class="icon">
-													<i class="fas fa-user"></i>
-												</div>
-												<div class="msg-header">
-													<p>Please enter yout pet's name and age </p>
-												</div>
-											</div>
-											<div class="user-inbox inbox">
-												<div class="msg-header">
-													<p>Randy 5</p>
-												</div>
-											</div>
-											<div class="bot-inbox inbox">
-												<div class="icon">
-													<i class="fas fa-user"></i>
-												</div>
-												<div class="msg-header">
-													<p>Hey "Randy's owner, what symptoms does it have? please enter one of his symptoms. (Ex. vomiting, cough, ticks etc.)</p>
-												</div>
-											</div>
-											<div class="user-inbox inbox">
-												<div class="msg-header">
-													<p>Cough</p>
-												</div>
-											</div>
-											<div class="bot-inbox inbox">
-												<div class="icon">
-													<i class="fas fa-user"></i>
-												</div>
-												<div class="msg-header">
-													<p>Enter one more symptom beside cough (Enter 'No' if not) </p>
-												</div>
-											</div>
-											<div class="user-inbox inbox">
-												<div class="msg-header">
-													<p>Ticks</p>
-												</div>
-											</div>
-											<div class="bot-inbox inbox">
-												<div class="icon">
-													<i class="fas fa-user"></i>
-												</div>
-												<div class="msg-header">
-													<p>Enter one more symptom beside cough (Enter 'No' if not) </p>
-												</div>
-											</div>
-											<div class="user-inbox inbox">
-												<div class="msg-header">
-													<p>High Fever </p>
-												</div>
-											</div>
-											<div class="bot-inbox inbox">
-												<div class="icon">
-													<i class="fas fa-user"></i>
-												</div>
-												<div class="msg-header">
-													<p>Enter one more symptom beside cough (Enter 'No' if not) </p>
-												</div>
-											</div>
-											<div class="user-inbox inbox">
-												<div class="msg-header">
-													<p>Vomiting </p>
-												</div>
-											</div>
-											<div class="bot-inbox inbox">
-												<div class="icon">
-													<i class="fas fa-user"></i>
-												</div>
-												<div class="msg-header">
-													<p>Enter one more symptom beside cough (Enter 'No' if not) </p>
-												</div>
-											</div>
-											<div class="user-inbox inbox">
-												<div class="msg-header">
-													<p>No </p>
-												</div>
-											</div>
-											<div class="bot-inbox inbox">
-												<div class="icon">
-													<i class="fas fa-user"></i>
-												</div>
-												<div class="msg-header">
-													<p>Hey "Randy's owner, Randy might have Tick fever. Tick fever is a disease caused by a bacteria. Symptoms usually appear within two weeks after a tick bite. Is tick fever serious?
-													Tick fever is a serious illness that can affect dogs of all ages. If you think your dog may have tick fever, it's important to take them to the vet right away. The first sign is often a red sore that develops a dark crust, called an eschar.</p>
-												</div>
-											</div>
-										<div class="typing-field">
-											<div class="input-data">
-												<input type="text" placeholder="Type something here..." required>
-												<button>Send</button>
-											</div>
-										</div>
-			
-                        <div>
-                        </div>
-                    </form>
-                </div>
+                <form>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Name</label>
+                      <input type="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter name">
+                    </div><br/>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Age</label>
+                      <input type="text" class="form-control" id="age" placeholder="Age">
+                    </div><br/>
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Symptoms</label>
+                      <textarea class="form-control" id="symptoms" rows="3"></textarea>
+                    </div>
+                    <br/>
+                    <div style="background-color: orangered; width:90px;color:aliceblue;padding: 10px 15px;font-weight: bold;border-radius: 5px;">
+                        <a onclick="Predictor()">Submit</a>
+                    </div>
+                    
+                    
+                </form>
             </div>
         </div>
     </div>
